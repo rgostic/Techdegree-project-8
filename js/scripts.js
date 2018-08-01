@@ -1,6 +1,8 @@
 const gallery = document.querySelector('.gallery');
+
+$('input').focus();
 $.ajax({
-    url: 'https://randomuser.me/api/?results=12',
+    url: 'https://randomuser.me/api/?results=50',
     dataType: 'json',
     success: function(data) {
         console.log(data);
@@ -17,7 +19,7 @@ $.ajax({
                 </div>
             `;
 
-            gallery.innerHTML += card;
+            $(gallery).append(card);
         });
 
         $('.card').on('click', function(e) {
@@ -62,6 +64,35 @@ $('.overlay, .close-modal').on('click', function(e) {
     }
 });
 
+function getSearchString(card) {
+    let $card = $(card);
+
+    let searchString = $card.find('.name').text();
+
+    searchString += $card.find('.email').text();
+    searchString += $card.find('.city').text();
 
 
+    return searchString;
+}
 
+$('#employeeSearch').on('change keyup', function(){
+    var userSearch = $("#employeeSearch").val();
+
+   var searchStrings = $('.card').map(function(i,c) {
+
+       return {
+           searchString: getSearchString(c),
+           card: c
+        }
+   });
+   $('.card').hide();
+   var searchMatches = searchStrings.filter(function(i,v) {
+
+      return v.searchString.toLowerCase().indexOf(userSearch.toLowerCase()) !== -1;
+   });
+    console.log(searchMatches);
+   searchMatches.each(function(i,ss) {
+       $(ss.card).show();
+   });
+});

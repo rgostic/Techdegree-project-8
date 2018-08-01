@@ -8,6 +8,7 @@ body {
   background-color: rgba( 242,242,242,.6);
 }
 
+
 .container {
   max-width: 1024px;
   margin: 0 auto;
@@ -15,8 +16,34 @@ body {
   h1 {
     text-transform: uppercase;
     font-size: 1.5em;
-    margin-top: 2em;
+    color: darken(rgb(255,255,255), 30%);
     margin-bottom: 1em;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  margin-top:2em;
+  input {
+    width: 40%;
+    margin-left: auto;
+    padding: 1em;
+
+    border: 1px solid rgb(220,220,220);
+    background-color: rgb(245,245,245);
+    &:focus {
+      background-color: rgba(0,0,200,.05);
+      outline: 0;
+      border: 1px solid rgb(220,220,220);
+      box-shadow: 1px 1px 5px darken(rgb(255,255,255), 25%);
+    }
+    &:focus::-webkit-input-placeholder {
+      font-size: 1.2em;
+      font-weight:bold;
+
+    }
+
   }
 }
 
@@ -33,7 +60,10 @@ body {
   width: 30%;
   margin: 1em;
   padding: 1.2em;
-
+  cursor:pointer;
+  &:hover {
+    box-shadow: 2px 2px 12px darken(rgb(255,255,255),20%);
+  }
   h2 {
     text-transform: capitalize;
     font-size: 1.3em;
@@ -63,7 +93,7 @@ body {
   position: fixed;
   top:50%;
   width: 300px;
-  height: 400px;
+  height: 370px;
   max-width: 100%;
   max-height: 100%;
   left:50%;
@@ -97,6 +127,7 @@ body {
   padding: 5px;
   border:none;
   background-color:white;
+  cursor:pointer;
 }
 
 .modal {
